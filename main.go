@@ -9,6 +9,7 @@ import (
 	"github.com/jintoples/simple-restful-api/controller"
 	"github.com/jintoples/simple-restful-api/exception"
 	"github.com/jintoples/simple-restful-api/helper"
+	"github.com/jintoples/simple-restful-api/middleware"
 	"github.com/jintoples/simple-restful-api/repository"
 	"github.com/jintoples/simple-restful-api/service"
 	"github.com/julienschmidt/httprouter"
@@ -34,7 +35,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    "localhost:3000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	err := server.ListenAndServe()
