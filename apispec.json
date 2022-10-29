@@ -3,7 +3,7 @@
   "info": {
     "title": "Category RESTful API",
     "description": "API Sepc for category RESful API",
-    "version": "1.0"
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -13,6 +13,11 @@
   "paths": {
     "/categories": {
       "get": {
+        "security": [
+          {
+            "CategoryAuth": []
+          }
+        ],
         "tags": [
           "Category API"
         ],
@@ -43,6 +48,11 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "CategoryAuth": []
+          }
+        ],
         "tags": [
           "Category API"
         ],
@@ -84,6 +94,11 @@
     },
     "/categories/{categoryId}": {
       "get": {
+        "security": [
+          {
+            "CategoryAuth": []
+          }
+        ],
         "tags": [
           "Category API"
         ],
@@ -93,7 +108,15 @@
           {
             "name": "categoryId",
             "in": "path",
-            "description": "Category Id"
+            "description": "Category Id",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -121,6 +144,11 @@
         }
       },
       "put": {
+        "security": [
+          {
+            "CategoryAuth": []
+          }
+        ],
         "tags": [
           "Category API"
         ],
@@ -130,7 +158,15 @@
           {
             "name": "categoryId",
             "in": "path",
-            "description": "Category Id"
+            "description": "Category Id",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
           }
         ],
         "requestBody": {
@@ -167,6 +203,11 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "CategoryAuth": []
+          }
+        ],
         "tags": [
           "Category API"
         ],
@@ -176,7 +217,15 @@
           {
             "name": "categoryId",
             "in": "path",
-            "description": "Category Id"
+            "description": "Category Id",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "number"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -203,6 +252,14 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "CategoryAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Authentication for category API"
+      }
+    },
     "schemas": {
       "CreateOrUpdateCategory": {
         "type": "object",
